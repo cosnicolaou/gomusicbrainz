@@ -33,6 +33,7 @@ type Recording struct {
 	Length         int          `xml:"length"`
 	Disambiguation string       `xml:"disambiguation"`
 	ArtistCredit   ArtistCredit `xml:"artist-credit"`
+	Date           BrainzTime   `xml:"first-release-date"`
 
 	// TODO add refs
 }
