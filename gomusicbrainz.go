@@ -72,9 +72,11 @@ not supported yet.
 package gomusicbrainz
 
 import (
+	"bytes"
 	"encoding/xml"
 	"errors"
 	"fmt"
+	"io"
 	"net/http"
 	"net/url"
 	"path"
@@ -147,11 +149,22 @@ func (c *WS2Client) getRequest(data interface{}, params url.Values, endpoint str
 	}
 	defer resp.Body.Close()
 
-	decoder := xml.NewDecoder(resp.Body)
+	buf := bytes.NewBuffer(make([]byte, 0, 1000))
+	io.Copy(buf, resp.Body)
+
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("%v", resp.StatusCode)
+	}
+
+	rd := bytes.NewReader(buf.Bytes())
+	decoder := xml.NewDecoder(rd)
 
 	if err = decoder.Decode(data); err != nil {
 		return err
 	}
+
+	//	fmt.Printf("... %s\n", &reqUrl)
+	//	fmt.Printf("buf to %T .... %s\n", data, buf)
 	return nil
 }
 

@@ -30,3 +30,9 @@ type Tag struct {
 	Count int    `xml:"count,attr"`
 	Name  string `xml:"name"`
 }
+
+type Genre struct {
+	Count int    `xml:"count,attr"`
+	ID    MBID   `xml:"id,attr"`
+	Name  string `xml:"name"`
+}

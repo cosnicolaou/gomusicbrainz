@@ -42,6 +42,7 @@ type Artist struct {
 	BeginArea      Area               `xml:"begin-area"`
 	Aliases        []*Alias           `xml:"alias-list>alias"`
 	Tags           []Tag              `xml:"tag-list>tag"`
+	Genres         []Genre            `xml:"genre-list>genre"`
 	Relations      TargetRelationsMap `xml:"relation-list"`
 }
 

@@ -39,6 +39,7 @@ type Release struct {
 	ArtistCredit       ArtistCredit       `xml:"artist-credit"`
 	ReleaseGroup       ReleaseGroup       `xml:"release-group"`
 	Date               BrainzTime         `xml:"date"`
+	FirstReleaseDate   BrainzTime         `xml:"first-release-date"`
 	CountryCode        string             `xml:"country"`
 	Barcode            string             `xml:"barcode"`
 	Asin               string             `xml:"asin"`
